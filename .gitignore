@@ -2,3 +2,5 @@
 vendor/
 
 Gopkg\.lock
+
+\.idea/
