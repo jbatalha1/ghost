@@ -47,6 +47,9 @@ type BasicAuth struct {
 	Password string
 }
 
+type NoAuth struct {
+}
+
 type DataModel struct {
 	Data interface{}
 }

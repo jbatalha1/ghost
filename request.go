@@ -8,8 +8,8 @@ import (
 )
 
 type RestResponse struct {
-	Raw 		*resty.Response
-	String 		string
+	Raw    *resty.Response
+	String string
 }
 
 var Unmarshal = func(payload string, v interface{}) error {
@@ -20,7 +20,7 @@ func (g Ghost) MakeRequest() (r RestResponse, err error) {
 	return g.request()
 }
 
-func (g Ghost) request() (r RestResponse, err error){
+func (g Ghost) request() (r RestResponse, err error) {
 
 	resp := resty.SetRetryCount(g.Rest.RetryCount).
 		SetRetryWaitTime(g.Rest.RetryWaitTime).
@@ -51,6 +51,7 @@ func (g Ghost) request() (r RestResponse, err error){
 		resp.SetHeader(g.Rest.Auth.(*Token).Value, g.Rest.Auth.(*Token).Value)
 	case *BasicAuth:
 		resp.SetBasicAuth(g.Rest.Auth.(*BasicAuth).Username, g.Rest.Auth.(*BasicAuth).Password)
+	case *NoAuth:
 	default:
 		_, err := console.Println("[✖] Unexpected Auth type, why?", v)
 		return r, err
