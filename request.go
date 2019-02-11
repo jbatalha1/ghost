@@ -26,6 +26,10 @@ func (g Ghost) request() (r RestResponse, err error) {
 		SetRetryWaitTime(g.Rest.RetryWaitTime).
 		SetRetryMaxWaitTime(g.Rest.RetryMaxWaitTime)
 
+	if g.Rest.QueryParams != nil {
+		resp.SetRedirectPolicy(g.Rest.RedirectPolicy)
+	}
+
 	if g.Rest.ContentType != "" {
 		resp.SetHeader("Content-Type", g.Rest.ContentType)
 	}
@@ -59,10 +63,6 @@ func (g Ghost) request() (r RestResponse, err error) {
 
 	if g.Rest.QueryParams != nil {
 		resp.SetQueryParams(g.Rest.QueryParams)
-	}
-
-	if g.Rest.QueryParams != nil {
-		resp.SetRedirectPolicy(g.Rest.RedirectPolicy)
 	}
 
 	if g.Rest.Type == "GET" {
