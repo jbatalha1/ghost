@@ -26,6 +26,7 @@ type Rest struct {
 	RetryMaxWaitTime time.Duration
 	URL              string
 	QueryParams      map[string]string
+	RedirectPolicy   interface{}
 }
 
 type Proxy struct {

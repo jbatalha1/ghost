@@ -61,6 +61,10 @@ func (g Ghost) request() (r RestResponse, err error) {
 		resp.SetQueryParams(g.Rest.QueryParams)
 	}
 
+	if g.Rest.QueryParams != nil {
+		resp.SetRedirectPolicy(g.Rest.RedirectPolicy)
+	}
+
 	if g.Rest.Type == "GET" {
 		resp, err := resp.R().Get(g.Rest.URL)
 		if err != nil {
