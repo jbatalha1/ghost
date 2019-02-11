@@ -26,7 +26,7 @@ func (g Ghost) request() (r RestResponse, err error) {
 		SetRetryWaitTime(g.Rest.RetryWaitTime).
 		SetRetryMaxWaitTime(g.Rest.RetryMaxWaitTime)
 
-	if g.Rest.QueryParams != nil {
+	if g.Rest.RedirectPolicy != nil {
 		resp.SetRedirectPolicy(g.Rest.RedirectPolicy)
 	}
 
