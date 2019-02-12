@@ -45,7 +45,7 @@ func (g Ghost) request() (r RestResponse, err error) {
 				resp.SetProxy(g.Rest.Proxy.(*ProxyGateway).Ip[n])
 			}
 		default:
-			_, err := console.Println("[✖] Unexpected Auth type, why?", v)
+			console.Println("[✖] Unexpected Auth type, why?", v)
 			return r, err
 		}
 	}
@@ -57,7 +57,7 @@ func (g Ghost) request() (r RestResponse, err error) {
 		resp.SetBasicAuth(g.Rest.Auth.(*BasicAuth).Username, g.Rest.Auth.(*BasicAuth).Password)
 	case *NoAuth:
 	default:
-		_, err := console.Println("[✖] Unexpected Auth type, why?", v)
+		console.Println("[✖] Unexpected Auth type, why?", v)
 		return r, err
 	}
 
@@ -68,7 +68,7 @@ func (g Ghost) request() (r RestResponse, err error) {
 	if g.Rest.Type == "GET" {
 		resp, err := resp.R().Get(g.Rest.URL)
 		if err != nil {
-			_, err := console.Println("[✖] Unexpected GET request, why?", err)
+			console.Println("[✖] Unexpected GET request, why?", err)
 			return r, err
 		}
 
@@ -79,7 +79,7 @@ func (g Ghost) request() (r RestResponse, err error) {
 	} else {
 		resp, err := resp.R().SetBody(g.Rest.Payload).Post(g.Rest.URL)
 		if err != nil {
-			_, err := console.Printf("[✖] Unexpected POST request, why?", err)
+			console.Printf("[✖] Unexpected POST request, why?", err)
 			return r, err
 		}
 
